@@ -15,8 +15,6 @@ class firstNameFemale(Sampler):
     values = ['Mary', 'Patricia', 'Linda', 'Barbara', 'Elizabeth', 'Jennifer', 'Maria', 'Susan', 'Margaret', 'Dorothy', 'Lisa', 'Nancy', 'Karen', 'Betty', 'Helen', 'Sandra', 'Donna', 'Carol', 'Ruth', 'Sharon', 'Michelle', 'Laura', 'Sarah', 'Kimberly', 'Deborah', 'Jessica', 'Shirley', 'Cynthia', 'Angela', 'Melissa', 'Brenda', 'Amy', 'Anna', 'Rebecca', 'Virginia', 'Kathleen', 'Pamela', 'Martha', 'Debra', 'Amanda', 'Stephanie', 'Carolyn', 'Christine', 'Marie', 'Janet', 'Catherine', 'Frances', 'Ann', 'Joyce', 'Diane', 'Alice', 'Julie', 'Heather', 'Teresa', 'Doris', 'Gloria', 'Evelyn', 'Jean', 'Cheryl', 'Mildred', 'Katherine', 'Joan', 'Ashley', 'Judith', 'Rose', 'Janice', 'Kelly', 'Nicole', 'Judy', 'Christina', 'Kathy', 'Theresa', 'Beverly', 'Denise', 'Tammy', 'Irene', 'Jane', 'Lori', 'Rachel', 'Marilyn', 'Andrea', 'Kathryn', 'Louise', 'Sara', 'Anne', 'Jacqueline', 'Wanda', 'Bonnie', 'Julia', 'Ruby', 'Lois', 'Tina', 'Phyllis', 'Norma', 'Paula', 'Diana', 'Annie', 'Lillian', 'Emily', 'Robin', 'Peggy', 'Crystal', 'Gladys', 'Rita', 'Dawn', 'Connie', 'Florence', 'Tracy', 'Edna', 'Tiffany', 'Carmen', 'Rosa', 'Cindy', 'Grace', 'Wendy', 'Victoria', 'Edith', 'Kim', 'Sherry', 'Sylvia', 'Josephine', 'Thelma', 'Shannon', 'Sheila', 'Ethel', 'Ellen', 'Elaine', 'Marjorie', 'Carrie', 'Charlotte', 'Monica', 'Esther', 'Pauline', 'Emma', 'Juanita', 'Anita', 'Rhonda', 'Hazel', 'Amber', 'Eva', 'Debbie', 'April', 'Leslie', 'Clara', 'Lucille', 'Jamie', 'Joanne', 'Eleanor', 'Valerie', 'Danielle', 'Megan', 'Alicia', 'Suzanne', 'Michele', 'Gail', 'Bertha', 'Darlene', 'Veronica', 'Jill', 'Erin', 'Geraldine', 'Lauren', 'Cathy', 'Joann', 'Lorraine', 'Lynn', 'Sally', 'Regina', 'Erica', 'Beatrice', 'Dolores', 'Bernice', 'Audrey', 'Yvonne', 'Annette', 'June', 'Samantha', 'Marion', 'Dana', 'Stacy', 'Ana', 'Renee', 'Ida', 'Vivian', 'Roberta', 'Holly', 'Brittany', 'Melanie', 'Loretta', 'Yolanda', 'Jeanette', 'Laurie', 'Katie', 'Kristen', 'Vanessa', 'Alma', 'Sue', 'Elsie', 'Beth', 'Jeanne', 'Vicki', 'Carla', 'Tara', 'Rosemary', 'Eileen', 'Terri', 'Gertrude', 'Lucy', 'Tonya', 'Ella', 'Stacey', 'Wilma', 'Gina', 'Kristin', 'Jessie', 'Natalie', 'Agnes', 'Vera', 'Willie', 'Charlene', 'Bessie', 'Delores', 'Melinda', 'Pearl', 'Arlene', 'Maureen', 'Colleen', 'Allison', 'Tamara', 'Joy', 'Georgia', 'Constance', 'Lillie', 'Claudia', 'Jackie', 'Marcia', 'Tanya', 'Nellie', 'Minnie', 'Marlene', 'Heidi', 'Glenda', 'Lydia', 'Viola', 'Courtney', 'Marian', 'Stella', 'Caroline', 'Dora', 'Jo', 'Vickie', 'Mattie', 'Terry', 'Maxine', 'Irma', 'Mabel', 'Marsha', 'Myrtle', 'Lena', 'Christy', 'Deanna', 'Patsy', 'Hilda', 'Gwendolyn', 'Jennie', 'Nora', 'Margie', 'Nina', 'Cassandra', 'Leah', 'Penny', 'Kay', 'Priscilla', 'Naomi', 'Carole', 'Brandy', 'Olga', 'Billie', 'Dianne', 'Tracey', 'Leona', 'Jenny', 'Felicia', 'Sonia', 'Miriam', 'Velma', 'Becky', 'Bobbie', 'Violet', 'Kristina', 'Toni', 'Misty', 'Mae', 'Shelly', 'Daisy', 'Ramona', 'Sherri', 'Erika', 'Katrina', 'Claire', 'Lindsey', 'Lindsay', 'Geneva', 'Guadalupe', 'Belinda', 'Margarita', 'Sheryl', 'Cora', 'Faye', 'Ada', 'Natasha', 'Sabrina', 'Isabel', 'Marguerite', 'Hattie', 'Harriet', 'Molly', 'Cecilia', 'Kristi', 'Brandi', 'Blanche', 'Sandy', 'Rosie', 'Joanna', 'Iris', 'Eunice', 'Angie', 'Inez', 'Lynda', 'Madeline', 'Amelia', 'Alberta', 'Genevieve', 'Monique', 'Jodi', 'Janie', 'Maggie', 'Kayla', 'Sonya', 'Jan', 'Lee', 'Kristine', 'Candace', 'Fannie', 'Maryann', 'Opal', 'Alison', 'Yvette', 'Melody', 'Luz', 'Susie', 'Olivia', 'Flora', 'Shelley', 'Kristy', 'Mamie', 'Lula', 'Lola', 'Verna', 'Beulah', 'Antoinette', 'Candice', 'Juana', 'Jeannette', 'Pam', 'Kelli', 'Hannah', 'Whitney', 'Bridget', 'Karla', 'Celia', 'Latoya', 'Patty', 'Shelia', 'Gayle', 'Della', 'Vicky', 'Lynne', 'Sheri', 'Marianne', 'Kara', 'Jacquelyn', 'Erma', 'Blanca', 'Myra', 'Leticia', 'Pat', 'Krista', 'Roxanne', 'Angelica', 'Johnnie', 'Robyn', 'Francis', 'Adrienne', 'Rosalie', 'Alexandra', 'Brooke', 'Bethany', 'Sadie', 'Bernadette', 'Traci', 'Jody', 'Kendra', 'Jasmine', 'Nichole', 'Rachael', 'Chelsea', 'Mable', 'Ernestine', 'Muriel', 'Marcella', 'Elena', 'Krystal', 'Angelina', 'Nadine', 'Kari', 'Estelle', 'Dianna', 'Paulette', 'Lora', 'Mona', 'Doreen', 'Rosemarie', 'Angel', 'Desiree', 'Antonia', 'Hope', 'Ginger', 'Janis', 'Betsy', 'Christie', 'Freda', 'Mercedes', 'Meredith', 'Lynette', 'Teri', 'Cristina', 'Eula', 'Leigh', 'Meghan', 'Sophia', 'Eloise', 'Rochelle', 'Gretchen', 'Cecelia', 'Raquel', 'Henrietta', 'Alyssa', 'Jana', 'Kelley', 'Gwen', 'Kerry', 'Jenna', 'Tricia', 'Laverne', 'Olive', 'Alexis', 'Tasha', 'Silvia', 'Elvira', 'Casey', 'Delia', 'Sophie', 'Kate', 'Patti', 'Lorena', 'Kellie', 'Sonja', 'Lila', 'Lana', 'Darla', 'May', 'Mindy', 'Essie', 'Mandy', 'Lorene', 'Elsa', 'Josefina', 'Jeannie', 'Miranda', 'Dixie', 'Lucia', 'Marta', 'Faith', 'Lela', 'Johanna', 'Shari', 'Camille', 'Tami', 'Shawna', 'Elisa', 'Ebony', 'Melba', 'Ora', 'Nettie', 'Tabitha', 'Ollie', 'Jaime', 'Winifred', 'Kristie']
 
 class firstName:
-    cost = 20
-
     male_name = firstNameMale()
     female_name = firstNameFemale()
 
@@ -45,8 +43,6 @@ class prefixFemale(WeightedSampler):
     weights = [0.1, 0.4, 0.4, 0.05, 0.05]
 
 class prefix:
-    cost = 20
-
     male_pf = prefixMale()
     fem_pf = prefixFemale()
 
@@ -57,8 +53,6 @@ class prefix:
             return self.fem_pf()
 
 class fullName:
-    cost = 40
-
     male_name = firstNameMale()
     female_name = firstNameFemale()
     suffix = suffix()
@@ -87,8 +81,6 @@ class personSex(Sampler):
 # phone numbers
 
 class localNumber:
-    cost = 10
-
     l = 1000000000
     u = 9999999999
     ib = IntegerBetween()
@@ -96,8 +88,6 @@ class localNumber:
         return str(self.ib(self.l, self.u))
 
 class internationalCode:
-    cost = 10
-
     l = 1
     u = 999
     ib = IntegerBetween()
@@ -105,8 +95,6 @@ class internationalCode:
         return '+' + str(self.ib(self.l, self.u))
 
 class areaCode:
-    cost = 10    
-
     l = 100
     u = 999
     ib = IntegerBetween()
@@ -114,8 +102,6 @@ class areaCode:
         return str(self.ib(self.l, self.u))
 
 class phoneExtension:
-    cost = 10
-
     l = 10
     u = 9999
     ib = IntegerBetween()
@@ -123,8 +109,6 @@ class phoneExtension:
         return 'x' + str(self.ib(self.l, self.u))
 
 class internationalNumber:
-    cost = 10
-
     local = localNumber()
     code = internationalCode()
     def __call__(self):
@@ -139,7 +123,6 @@ class eMail_number(Sampler):
     values = list(map(str, range(100,1000)))
 
 class eMail:
-    cost = 20
     names = firstName()
     domains = eMail_domain()
     numbers = eMail_number()
@@ -150,8 +133,6 @@ class eMail:
 # date/time
 
 class time_formatter: # TODO: check source for possible exceptions
-    cost = 20
-
     def __call__(self, format, ts):
         return time.strftime(format, time.gmtime(ts))
 
@@ -159,21 +140,15 @@ class timeZone(Sampler):
     values = ['UTC−12:00', 'UTC−11:00', 'UTC−10:00', 'UTC−09:30', 'UTC−09:00', 'UTC−08:00', 'UTC−07:00', 'UTC−06:00', 'UTC−05:00', 'UTC−04:00', 'UTC−03:30', 'UTC−03:00', 'UTC−02:00', 'UTC−01:00', 'UTC±00:00', 'UTC+01:00', 'UTC+02:00', 'UTC+03:00', 'UTC+03:30', 'UTC+04:00', 'UTC+04:30', 'UTC+05:00', 'UTC+05:30', 'UTC+05:45', 'UTC+06:00', 'UTC+06:30', 'UTC+07:00', 'UTC+08:00', 'UTC+08:45', 'UTC+09:00', 'UTC+09:30', 'UTC+10:00', 'UTC+10:30', 'UTC+11:00', 'UTC+12:00', 'UTC+12:45', 'UTC+13:00', 'UTC+14:00']
 
 class timeUnix:
-    cost = 10
-
     def __call__(self):
         return int(time.time())
 
 class timeNow:
-    cost = 10
-
     tf = time_formatter()
     def __call__(self, format='%H:%M:%S'):
         return self.tf(format, int(time.time()))
 
 class timeRandom:
-    cost = 10
-
     tf = time_formatter()
     def __call__(self, format='%H:%M:%S'):
         rt = random.sample(range(-1262304000, int(time.time())), 1)[0] # start time is jan 1, 1930
@@ -183,8 +158,6 @@ class timeRandom:
 # numbers
 
 class numberInt:
-    cost = 10
-
     ib = IntegerBetween()
     def __call__(self, l=-2**31, u=2**31):
         l = int(l)
@@ -194,8 +167,6 @@ class numberInt:
 class numberFloat:
 # Note: floats are returned as floats, so they may have less than k digits after the decimal,
 # for instance, 3.240 will be returned as 3.24. Document this.
-    cost = 10
-
     fb = FloatBetween()
     def __call__(self, l=-2**31, u=2**31, k=None):
         l = float(l)
@@ -208,8 +179,6 @@ class numberFloat:
 # random strings
 
 class randomString:
-    cost = 20
-
     rc = RandomChar()
     ib = IntegerBetween()
     def __call__(self, n=None):
@@ -226,8 +195,6 @@ class randomString:
 # addresses
 
 class streetName:
-    cost = 20
-
     names = Sampler(['Magnolia', 'Cherry', 'Chestnut', 'Jackson', 'Thomas', 'Montgomery', 'Pennsylvania', 'Washington', 'Willow', 'Beech', 'South', 'North', 'Sherman', 
 'Oregon', 'Ash', 'Spruce', 'Pine', 'Market', 'Main'])
     types = WeightedSampler(['St.', 'Ave.', 'Dr.', 'Rd.', 'Blvd.'],
@@ -242,8 +209,6 @@ class stateCode(Sampler):
     values = ['AK', 'AL', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 
 class zipCode:
-    cost = 10
-
     ib = IntegerBetween()
     def __call__(self):
         num = self.ib(0, 99999)
@@ -253,15 +218,11 @@ class zipCode:
         return zc           
 
 class streetNum:
-    cost = 10
-
     ib = IntegerBetween()
     def __call__(self):
         return str(self.ib(1, 9999))            
 
 class fullAddress:
-    cost = 30
-
     snum = streetNum()
     sname = streetName()
     zc = zipCode()
@@ -367,14 +328,4 @@ class Generate:
             return items
         else:
             return self._db[args['call']](*args['args'])
-
-    def cost(self, args_str):
-        args = self.parse_args(args_str)
-        if not args:
-            return 10 #TODO decide how to handle bad transactions
-        cost = self._db[args['call']].cost
-        if args['is_array']:
-            cost*=args['n']
-
-        return cost
 

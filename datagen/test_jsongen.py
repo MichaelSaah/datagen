@@ -6,11 +6,6 @@ import string
 db = Generate()
 
 
-def test_generator_costs():
-    for _, gen in db._db.items():
-        assert hasattr(gen, 'cost')
-
-
 def test_generators():
     # case: general sampler test
     t = db('_tester')
@@ -81,7 +76,7 @@ def test_jsongen_generate():
         "children" : ["_tester", "_tester", "_tester" ]
     }
 
-    test_dict, _ = jg.generate(test_dict)
+    test_dict = jg.generate(test_dict)
     assert test_dict["name"]["first"] in db._db["_tester"].values
     assert test_dict["name"]["last"] in db._db["_tester"].values
     assert test_dict["age"] in db._db["_tester"].values
@@ -93,7 +88,7 @@ def test_jsongen_generate():
         "people" : [["_tester", "_tester"], ["_tester", "_tester"]]
     }
 
-    test_dict, _ = jg.generate(test_dict)
+    test_dict = jg.generate(test_dict)
     for f,l in test_dict["people"]:
         assert f in db._db["_tester"].values
         assert l in db._db["_tester"].values
@@ -102,7 +97,7 @@ def test_jsongen_generate():
     test_dict = {
         "int" : 3, "float" : 2.07, "bool" : True, "null" : None
     }
-    test_dict, _ = jg.generate(test_dict)
+    test_dict = jg.generate(test_dict)
     assert test_dict['int'] == 3
     assert test_dict['float'] == 2.07
     assert test_dict['bool'] == True
@@ -110,28 +105,12 @@ def test_jsongen_generate():
 
     # case: list
     test_list = ["_tester", "_tester"]
-    test_list, _ = jg.generate(test_list)
+    test_list = jg.generate(test_list)
     assert test_list[0] in db._db["_tester"].values
     assert test_list[1] in db._db["_tester"].values
 
     # case: naked value
     test_val = "_tester"
-    test_val, _ = jg.generate(test_val)
+    test_val = jg.generate(test_val)
     assert test_val in db._db["_tester"].values
 
-    # test cost function
-    # TODO test nested cases
-    # case: simple cost
-    test_dict = {"name": "_tester"}
-    _, cost = jg.generate(test_dict)
-    assert cost == db._db['_tester'].cost
-
-    # case: array cost
-    test_dict = {'names': 'array|10|_tester'}
-    _, cost = jg.generate(test_dict)
-    assert cost == db._db['_tester'].cost * 10
-
-    # case: bad args cost
-    test_dict = {'names': 'array10|_tester'}
-    _, cost = jg.generate(test_dict)
-    assert cost == 10

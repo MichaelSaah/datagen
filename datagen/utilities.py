@@ -3,7 +3,6 @@ import random, string
 # Building blocks for generators - not exposed to API
 
 class Sampler:
-    cost = 10
     def __init__(self, values=None):
         if values:
             self.values = values
@@ -89,11 +88,9 @@ class VosesAlias:
 
 
 class WeightedSampler(VosesAlias):
-    cost = 10
-        
+    pass  
 
 class IntegerBetween:
-    cost = 10
     @staticmethod
     def __call__(l, u):
         if l > u:
@@ -102,7 +99,6 @@ class IntegerBetween:
 
 
 class FloatBetween:
-    cost = 10
     @staticmethod
     def __call__(l, u, k=None):
         width = u - l
