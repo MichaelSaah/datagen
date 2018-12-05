@@ -283,43 +283,51 @@ class Generate:
 
     def parse_args(self, args_str):
     # return is_array, n (if is_array), tuple of args
-    # if args bad, return empty dict
+    # if args bad, raise exception
         args_out = {'is_array': False}
-
         args = args_str.split('|')
 
         if args[0] == 'array' and len(args) >= 3:
             args_out['is_array'] = True
             args.pop(0) # throw away array keyword
+        
             # validate n
             n = args.pop(0)
             try:
                 n = int(n)
             except ValueError:
-                return {} # can't convert n
-            if n < 0 or args[0] not in self._db:
-                return {} # n not valid
+                msg = f"Invalid value for `n` given in '{args_str}'"
+                raise ValueError(msg)
+            if n < 0:
+                msg = f"Invalid value for `n` given in '{args_str}'"
+                raise ValueError(msg)
             args_out['n'] = n
+            
+            # validate
+            #if args[0] not in self._db:
 
-        try:
-            # validate args by doing test calls
-            if len(args) == 1:
-                self._db[args[0]]()
-                args_out['args'] = []
-            else:
-                self._db[args[0]](*args[1:])
-                args_out['args'] = args[1:]
-            args_out['call'] = args[0]
-        except (ValueError, KeyError):
-            return {} # test call failed
+        # validate call and call args
+        if len(args) == 0:
+            msg = f"Not enough arguments given in '{args_str}'"
+            raise ValueError(msg)
+
+        if args[0] not in self._db:
+            msg = f"Invalid data type given: {args[0]}"
+            raise ValueError(msg)
+        args_out['call'] = args[0]
+
+        if len(args) > 1:
+            # test extra args with a test call
+            self._db[args[0]](*args[1:])
+            args_out['args'] = args[1:]
+        else:
+            args_out['args'] = []
 
         return args_out
     
 
     def __call__(self, args_str):
         args = self.parse_args(args_str)
-        if not args:
-            return args_str
 
         if args['is_array']:
             items = []

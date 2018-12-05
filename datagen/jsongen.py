@@ -6,7 +6,7 @@ class JsonGen:
 
     def __call__(self, jsn, n):
         d = json.loads(jsn)
-        data, _ = self.generate(d, n)
+        data = self.generate(d, n)
         return data
 
     def generate(self, d, n=1):
