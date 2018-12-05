@@ -1,5 +1,4 @@
 from datagen.jsongen import JsonGen
-#import json
 
 jg = JsonGen()
 
