@@ -2,7 +2,19 @@ from datagen.jsongen import JsonGen
 
 jg = JsonGen()
 
-inp = '["firstName", "lastName", "personAge"]'
+inp = """
+{
+    "first" : "firstName",
+    "last" : "lastName",
+    "children" : {
+        "_n" : 4,
+        "obj" : {
+            "first" : "firstName",
+            "last" : "lastName"
+        }
+    }
+}
+"""
 
-outp = jg(inp, 100000)
-#print(outp)
+outp = jg(inp)
+print(outp)

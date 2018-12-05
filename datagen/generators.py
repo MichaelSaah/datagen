@@ -282,35 +282,10 @@ class Generate:
 
 
     def parse_args(self, args_str):
-    # return is_array, n (if is_array), tuple of args
-    # if args bad, raise exception
-        args_out = {'is_array': False}
+        args_out = dict() 
         args = args_str.split('|')
 
-        if args[0] == 'array' and len(args) >= 3:
-            args_out['is_array'] = True
-            args.pop(0) # throw away array keyword
-        
-            # validate n
-            n = args.pop(0)
-            try:
-                n = int(n)
-            except ValueError:
-                msg = f"Invalid value for `n` given in '{args_str}'"
-                raise ValueError(msg)
-            if n < 0:
-                msg = f"Invalid value for `n` given in '{args_str}'"
-                raise ValueError(msg)
-            args_out['n'] = n
-            
-            # validate
-            #if args[0] not in self._db:
-
         # validate call and call args
-        if len(args) == 0:
-            msg = f"Not enough arguments given in '{args_str}'"
-            raise ValueError(msg)
-
         if args[0] not in self._db:
             msg = f"Invalid data type given: {args[0]}"
             raise ValueError(msg)
@@ -318,6 +293,8 @@ class Generate:
 
         if len(args) > 1:
             # test extra args with a test call
+            # if the args are bad, responsibility to raise
+            # exception is on called function
             self._db[args[0]](*args[1:])
             args_out['args'] = args[1:]
         else:
@@ -328,12 +305,5 @@ class Generate:
 
     def __call__(self, args_str):
         args = self.parse_args(args_str)
-
-        if args['is_array']:
-            items = []
-            for _ in range(args['n']):
-                items.append(self._db[args['call']](*args['args']))
-            return items
-        else:
-            return self._db[args['call']](*args['args'])
+        return self._db[args['call']](*args['args'])
 
