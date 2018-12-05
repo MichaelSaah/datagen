@@ -1,7 +1,8 @@
-from .jsongen import JsonGen
-from .generators import Generate
-from .utilities import WeightedSampler
+from datagen.jsongen import JsonGen
+from datagen.generators import Generate
+from datagen.utilities import WeightedSampler
 import string
+import pytest
 
 db = Generate()
 
@@ -17,8 +18,8 @@ def test_generators():
         assert wb() in ['a', 'b']
 
     # case: not found:
-    nf = db('not found, leave me be')
-    assert nf == 'not found, leave me be'
+    with pytest.raises(ValueError):
+        nf = db('not found, leave me be')
 
     # case: array
     values = db('array|5|_tester')
@@ -28,7 +29,8 @@ def test_generators():
     # case: array with bad n
     bad_args = ['array|2.3|_tester', 'array|-3|_tester', 'array|n|_tester']
     for a in bad_args:
-        assert a == db(a)
+        with pytest.raises(ValueError):
+            db(a)
 
     # case: eMail
     em = db('eMail')
