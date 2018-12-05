@@ -1,6 +1,6 @@
-from datagen.jsongen import JsonGen
-from datagen.generators import Generate
-from datagen.utilities import WeightedSampler
+from .jsongen import JsonGen
+from .generators import Generate
+from .utilities import WeightedSampler
 import string
 import pytest
 
