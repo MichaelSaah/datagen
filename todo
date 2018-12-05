@@ -1,0 +1,29 @@
+implement intermediate form (don't parse args every time)
+
+generator tags:
+-addresses
+    make zipCode take a statecode and return valid zc for state
+        generating REAL VALID zc's is not trivial
+lat/long
+-middle names/initials
+-name prefixes
+-name suffixes
+-phone nums (extentions, country codes)
+-numbers (general)
+-date/time
+-timezones
+-random strings
+    could add more than just alphanumeric
+domains/urls
+Ip addresses (4/6)
+colors
+currencies
+bank stuff (CC, routing, acct #)
+hashes
+person stuff
+company
+-arrays of elements
+time series data (stocks)
+weather data
+lorem ipsum
+
