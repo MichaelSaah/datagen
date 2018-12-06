@@ -1,4 +1,4 @@
-import copy, json
+import json
 from .generators import Generate
 
 class JsonGen:
@@ -10,13 +10,9 @@ class JsonGen:
         return json.dumps(data)
 
     def generate(self, d, n=1):
-        if n==1:
-            data = self.replace_values(d)
-        else:
-            data = []
-            for _ in range(n):
-                data.append(self.replace_values(copy.deepcopy(d)))
-        return data    
+        if n > 1:
+            d = {'_n' : n, 'obj' : d}
+        return self.replace_values(d)
 
     def replace_values(self, d):
         if isinstance(d, list):
