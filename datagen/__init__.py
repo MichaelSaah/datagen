@@ -1,2 +1,2 @@
 name = 'datagen'
-from .jsongen import JsonGen
+from .datagen import datagen

@@ -1,4 +1,4 @@
-from .jsongen import JsonGen
+from .datagen import datagen
 from .generators import Generate
 from .utilities import WeightedSampler
 import string
@@ -7,7 +7,7 @@ import pytest
 gen = Generate()
 
 
-def test_dberators():
+def test_generators():
     # case: general sampler test
     t = gen('_tester')
     assert t in gen._db['_tester'].values
@@ -69,8 +69,8 @@ def test_dberators():
         assert len(zc) == 5
 
 
-def test_jsongen_dberate():
-    jg = JsonGen()
+def test_datagen():
+    dg = datagen()
 
     # case: general
     test_dict = {
@@ -79,7 +79,7 @@ def test_jsongen_dberate():
         "children" : ["_tester", "_tester", "_tester" ]
     }
 
-    test_dict = jg.generate(test_dict)
+    test_dict = dg.generate(test_dict)
     assert test_dict["name"]["first"] in gen._db["_tester"].values
     assert test_dict["name"]["last"] in gen._db["_tester"].values
     assert test_dict["age"] in gen._db["_tester"].values
@@ -92,7 +92,7 @@ def test_jsongen_dberate():
         'obj' : {'name' : '_tester'}
     }
 
-    test_dict = jg.generate(test_dict)
+    test_dict = dg.generate(test_dict)
     assert len(test_dict) == 10
     for i in range(10):
         assert test_dict[i]['name'] in gen._db['_tester'].values
@@ -104,7 +104,7 @@ def test_jsongen_dberate():
     }
 
     with pytest.raises(ValueError):
-        test_dict = jg.generate(test_dict)
+        test_dict = dg.generate(test_dict)
 
     # case: array with no obj
     test_dict = {
@@ -112,14 +112,14 @@ def test_jsongen_dberate():
     }
 
     with pytest.raises(ValueError):
-        test_dict = jg.generate(test_dict)
+        test_dict = dg.generate(test_dict)
     
     # case: nested lists
     test_dict = {
         "people" : [["_tester", "_tester"], ["_tester", "_tester"]]
     }
 
-    test_dict = jg.generate(test_dict)
+    test_dict = dg.generate(test_dict)
     for f,l in test_dict["people"]:
         assert f in gen._db["_tester"].values
         assert l in gen._db["_tester"].values
@@ -128,7 +128,7 @@ def test_jsongen_dberate():
     test_dict = {
         "int" : 3, "float" : 2.07, "bool" : True, "null" : None
     }
-    test_dict = jg.generate(test_dict)
+    test_dict = dg.generate(test_dict)
     assert test_dict['int'] == 3
     assert test_dict['float'] == 2.07
     assert test_dict['bool'] == True
@@ -136,12 +136,12 @@ def test_jsongen_dberate():
 
     # case: list
     test_list = ["_tester", "_tester"]
-    test_list = jg.generate(test_list)
+    test_list = dg.generate(test_list)
     assert test_list[0] in gen._db["_tester"].values
     assert test_list[1] in gen._db["_tester"].values
 
     # case: naked value
     test_val = "_tester"
-    test_val = jg.generate(test_val)
+    test_val = dg.generate(test_val)
     assert test_val in gen._db["_tester"].values
 
