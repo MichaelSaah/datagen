@@ -42,6 +42,15 @@ and get back
 
 ```["Stanley", "Brocious", "Justin640@verizon.net", 32]```
 
+### Generators
+In the last example, `"firstName"`, `"lastName"`, `"eMail"`, and `"personAge"` are all example of what we call generators. In their simplest form generators are passed as just a name. However, some generators can take arguments.
+
+For example, there is a `numberInt` generator that when passed without arguments produces a random signed 32 bit integer. However, let's say we wanted a three digit positive integer for a schema. All we need to do to get one of these is `numberInt|100|999`.
+
+As you can see, we use the `|` char to seperate arguments in generators.
+
+Generators are very easy to write, so if you need something custom, don't be afraid to write it!
+
 ### Multiple Records
 Of course, producing one record isn't much fun. Datagen provides two  ways to produce multiple records.
 
@@ -64,8 +73,8 @@ The second method is much more powerful. Let's say we want our schema to represe
 
 ```
 {
-	"teacher_name": "Ms. Applebaum",
-	"room_number": 304,
+	"teacher_name": "fullName",
+	"room_number": "numberInt|100|200",
 	"students": {
 		"_n": 10,
 		"obj": ["firstName", "lastName"]
@@ -92,7 +101,8 @@ What we did here was wrap our `students` object with another object that specifi
     ]
 }
 ```
-This is what Datagen does to the top-level object when the `-n` flag is passed.
+Internally, Datagen wraps the top-level object like this when the `-n` flag is passed.
+
 
 ## Other options
 The `-n` flag allows you to generate n records derived from the schema
@@ -101,5 +111,6 @@ The `-n` flag allows you to generate n records derived from the schema
 $ datagen schema.json -n 10 > output.json
 
 ```
+### Library Options
 
 
