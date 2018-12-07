@@ -191,7 +191,6 @@ class randomString:
             rs += self.rc()
         return rs        
 
-
 # addresses
 
 class streetName:

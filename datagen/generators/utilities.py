@@ -112,3 +112,7 @@ class FloatBetween:
 class RandomChar(Sampler):
     values = string.ascii_letters + string.digits
 
+
+class time_formatter: # TODO: check source for possible exceptions
+    def __call__(self, format, ts):
+        return time.strftime(format, time.gmtime(ts))

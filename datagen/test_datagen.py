@@ -1,6 +1,6 @@
-from .datagen import datagen
-from .generators import Generate
-from .utilities import WeightedSampler
+import datagen.datagen as datagen
+from datagen.datagen import Generate
+from datagen.generators.utilities import WeightedSampler
 import string
 import pytest
 
