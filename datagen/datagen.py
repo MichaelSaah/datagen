@@ -2,58 +2,8 @@ import json, os
 from importlib import import_module
 
 class Generate:
-    holder = """_db = {
-        # tester
-        '_tester' : _tester(),
-
-        # names
-        'firstName' : firstName(), # random gender
-        'lastName' : lastName(),
-        'middleInit': middleInit(),
-        'fullName': fullName(), # matching random gender
-        'prefix' : prefix(), # random gender
-        'suffix' : suffix(), # generally male
-
-        # person
-        'personAge' : personAge(),
-        'personSex' : personSex(),
-
-        # email
-        'eMail' : eMail(),
-
-        # phone
-        'localNumber': localNumber(),
-        'internationalCode': internationalCode(),
-        'areaCode': areaCode(),
-        'phoneExtension': phoneExtension(),
-        'internationalNumber': internationalNumber(),
-
-        # time
-        'timeZone' : timeZone(),
-        'timeNow' : timeNow(),
-        'timeUnix' : timeUnix(),
-        'timeRandom' : timeRandom(),
-
-        # numbers
-        'numberInt' : numberInt(),
-        'numberFloat' : numberFloat(),
-
-        # random strings
-        'randomString' : randomString(),
-
-        # addresses
-        'streetName' : streetName(),
-        'cityName' : cityName(),
-        'stateCode' : stateCode(),
-        'zipCode' : zipCode(),
-        'streetNum' : streetNum(),
-        'fullAddress' : fullAddress(),
-    }"""
-
     def __init__(self):
         self._db = {}
-        
-        #os.chdir(os.path.dirname(os.path.realpath(__file__)))
         for module in os.listdir(os.path.dirname(__file__) + '/generators'):
             if module == '__init__.py' or module[-3:] != '.py':
                 continue
@@ -63,7 +13,6 @@ class Generate:
                 self._db[generator] = getattr(module, generator)()
             except AttributeError:
                 continue
-
 
     def parse_args(self, args_str):
         args_out = dict() 
@@ -86,7 +35,6 @@ class Generate:
 
         return args_out
     
-
     def __call__(self, args_str):
         args = self.parse_args(args_str)
         return self._db[args['call']](*args['args'])

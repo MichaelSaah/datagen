@@ -1,11 +1,9 @@
-import datagen.datagen as datagen
-from datagen.datagen import Generate
+from datagen.datagen import datagen, Generate
 from datagen.generators.utilities import WeightedSampler
 import string
 import pytest
 
 gen = Generate()
-
 
 def test_generators():
     # case: general sampler test
