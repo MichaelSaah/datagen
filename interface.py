@@ -1,20 +1,18 @@
 from datagen.jsongen import JsonGen
+import json 
 
 jg = JsonGen()
 
 inp = """
 {
-    "first" : "firstName",
-    "last" : "lastName",
-    "children" : {
-        "_n" : 4,
-        "obj" : {
-            "first" : "firstName",
-            "last" : "lastName"
-        }
-    }
+        "teacher_name": "fullName",
+	"room_number": "numberInt|100|200",
+        "students": {
+		"_n": 10,
+                "obj": ["firstName", "lastName"]
+    } 
 }
 """
 
-outp = jg(inp)
-print(outp)
+outp = json.loads(jg(inp))
+print(json.dumps(outp, indent=4, sort_keys=False))

@@ -1,2 +1,2 @@
 name = 'datagen'
-from .datagen import datagen
+from .datagen import Datagen

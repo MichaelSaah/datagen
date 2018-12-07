@@ -9,10 +9,12 @@ class Generate:
                 continue
             generator = module[:-3]
             try:            
-                module = import_module('.generators.' + generator, 'datagen') # change anchor to load from setup.py or something
+                module = import_module('datagen.generators.' + generator)# TODO change anchor to load from setup.py or something
                 self._db[generator] = getattr(module, generator)()
             except AttributeError:
                 continue
+
+    # TODO: refactor below into one function, no need for test calls
 
     def parse_args(self, args_str):
         args_out = dict() 
@@ -40,7 +42,7 @@ class Generate:
         return self._db[args['call']](*args['args'])
 
 
-class datagen:
+class Datagen:
     gen = Generate()
 
     def __call__(self, jsn, n=1):

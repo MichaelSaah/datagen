@@ -1,7 +1,8 @@
-docs
-autoregistration of generators
+cli
+  args
+  entry point
 
-generator tags:
+generators:
 -addresses
     make zipCode take a statecode and return valid zc for state
         generating REAL VALID zc's is not trivial

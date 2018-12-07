@@ -1,4 +1,4 @@
-from datagen.datagen import datagen, Generate
+from datagen.datagen import Datagen, Generate
 from datagen.generators.utilities import WeightedSampler
 import string
 import pytest
@@ -68,7 +68,7 @@ def test_generators():
 
 
 def test_datagen():
-    dg = datagen()
+    dg = Datagen()
 
     # case: general
     test_dict = {
