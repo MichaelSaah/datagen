@@ -14,9 +14,7 @@ class Generate:
             except AttributeError:
                 continue
 
-    # TODO: refactor below into one function, no need for test calls
-
-    def parse_args(self, args_str):
+    def __call__(self, args_str):
         args_out = dict() 
         args = args_str.split('|')
 
@@ -24,33 +22,25 @@ class Generate:
         if args[0] not in self._db:
             msg = f"Invalid data type given: {args[0]}"
             raise ValueError(msg)
-        args_out['call'] = args[0]
 
         if len(args) > 1:
-            # test extra args with a test call
-            # if the args are bad, responsibility to raise
-            # exception is on called function
-            self._db[args[0]](*args[1:])
-            args_out['args'] = args[1:]
+            return self._db[args[0]](*args[1:])
         else:
-            args_out['args'] = []
-
-        return args_out
-    
-    def __call__(self, args_str):
-        args = self.parse_args(args_str)
-        return self._db[args['call']](*args['args'])
+            return self._db[args[0]]()
 
 
 class Datagen:
     gen = Generate()
 
-    def __call__(self, jsn, n=1):
-        d = json.loads(jsn)
-        data = self.generate(d, n)
-        return json.dumps(data)
+    def __call__(self, data, n=1, native=False): 
+        if native:
+            return self.generate(data, n)
+        else:
+            data = json.loads(data)
+            data = self.generate(data, n)
+            return json.dumps(data)
 
-    def generate(self, d, n=1):
+    def generate(self, d, n):
         if n > 1:
             d = {'_n' : n, 'obj' : d}
         return self.replace_values(d)

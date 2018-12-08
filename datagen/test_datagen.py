@@ -77,7 +77,7 @@ def test_datagen():
         "children" : ["_tester", "_tester", "_tester" ]
     }
 
-    test_dict = dg.generate(test_dict)
+    test_dict = dg(test_dict, native=True)
     assert test_dict["name"]["first"] in gen._db["_tester"].values
     assert test_dict["name"]["last"] in gen._db["_tester"].values
     assert test_dict["age"] in gen._db["_tester"].values
@@ -90,7 +90,7 @@ def test_datagen():
         'obj' : {'name' : '_tester'}
     }
 
-    test_dict = dg.generate(test_dict)
+    test_dict = dg(test_dict, native=True)
     assert len(test_dict) == 10
     for i in range(10):
         assert test_dict[i]['name'] in gen._db['_tester'].values
@@ -102,7 +102,7 @@ def test_datagen():
     }
 
     with pytest.raises(ValueError):
-        test_dict = dg.generate(test_dict)
+        test_dict = dg(test_dict, native=True)
 
     # case: array with no obj
     test_dict = {
@@ -110,14 +110,14 @@ def test_datagen():
     }
 
     with pytest.raises(ValueError):
-        test_dict = dg.generate(test_dict)
+        test_dict = dg(test_dict, native=True)
     
     # case: nested lists
     test_dict = {
         "people" : [["_tester", "_tester"], ["_tester", "_tester"]]
     }
 
-    test_dict = dg.generate(test_dict)
+    test_dict = dg(test_dict, native=True)
     for f,l in test_dict["people"]:
         assert f in gen._db["_tester"].values
         assert l in gen._db["_tester"].values
@@ -126,7 +126,7 @@ def test_datagen():
     test_dict = {
         "int" : 3, "float" : 2.07, "bool" : True, "null" : None
     }
-    test_dict = dg.generate(test_dict)
+    test_dict = dg(test_dict, native=True)
     assert test_dict['int'] == 3
     assert test_dict['float'] == 2.07
     assert test_dict['bool'] == True
@@ -134,12 +134,12 @@ def test_datagen():
 
     # case: list
     test_list = ["_tester", "_tester"]
-    test_list = dg.generate(test_list)
+    test_list = dg(test_list, native=True)
     assert test_list[0] in gen._db["_tester"].values
     assert test_list[1] in gen._db["_tester"].values
 
     # case: naked value
     test_val = "_tester"
-    test_val = dg.generate(test_val)
+    test_val = dg(test_val, native=True)
     assert test_val in gen._db["_tester"].values
 
