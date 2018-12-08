@@ -1,0 +1,8 @@
+{
+        "teacher_name": "fullName",
+	"room_number": "numberInt|100|200",
+        "students": {
+		"_n": 10,
+                "obj": ["firstName", "lastName"]
+    } 
+}
