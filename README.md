@@ -104,13 +104,22 @@ What we did here was wrap our `students` object with another object that specifi
 Internally, Datagen wraps the top-level object like this when the `-n` flag is passed.
 
 
-## Other options
-The `-n` flag allows you to generate n records derived from the schema
+## Options
+#### `-n`
+This flag with an integer allows you to generate n records derived from the schema
 
 ```
-$ datagen schema.json -n 10 > output.json
+$ datagen schema.json -n 10
+```
+
+#### `-p` or `--pretty`
+Passing this flag pretty prints the output.
+
+#### `-s`
+Passing this flag tells Datagen to interperet the path string as the schema itself. For example, one could do
 
 ```
-### Library Options
+$ datagen '["firstName", "lastName"]' -s
+```
 
-
+## Writing Extensions

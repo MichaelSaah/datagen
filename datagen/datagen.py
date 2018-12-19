@@ -9,7 +9,7 @@ class Generate:
                 continue
             generator = module[:-3]
             try:            
-                module = import_module('datagen.generators.' + generator)# TODO change anchor to load from setup.py or something
+                module = import_module('datagen.generators.' + generator)
                 self._db[generator] = getattr(module, generator)()
             except AttributeError:
                 continue

@@ -19,19 +19,6 @@ def test_generators():
     with pytest.raises(ValueError):
         nf = gen('not found, leave me be')
 
-    # MOVE TO TEST_GENERATE
-    # case: array
-    #values = gen('array|5|_tester')
-    #for v in values:
-    #    assert v in gen._db['_tester'].values
-
-    # MOVE TO TEST_GENERATE
-    # case: array with bad n
-    #bad_args = ['array|2.3|_tester', 'array|-3|_tester', 'array|n|_tester']
-    #for a in bad_args:
-    #    with pytest.raises(ValueError):
-    #        gen(a)
-
     # case: eMail
     em = gen('eMail')
     usr, dom = em.split('@')
