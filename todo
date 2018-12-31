@@ -1,7 +1,3 @@
-cli
-  args
-  entry point
-
 generators:
 -addresses
     make zipCode take a statecode and return valid zc for state
