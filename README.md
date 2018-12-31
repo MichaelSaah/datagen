@@ -122,4 +122,56 @@ Passing this flag tells Datagen to interperet the path string as the schema itse
 $ datagen '["firstName", "lastName"]' -s
 ```
 
-## Writing Extensions
+## Using as a Library
+Datagen is more flexible when used as a library. Here's a simple example:
+
+```
+from datagen import Datagen
+
+dg = Datagen()
+schema = {
+    "name" : {"first": "firstName", "last": "lastName"},
+}
+output = dg(schema, native=True)
+```
+By passing the `native` keyword argument, `output` is returned as a python dictionary (or list if the schema was given as a list). This allows you, for instance, to load the resulting data directly into a test database.
+
+## Writing Generators
+Writing generators is very simple. First off, we should note that when we say "generator", we are not speaking of python generators, which are a built-in feature of python. Our generators are just functions wrapped in classes. Below is an example with one argument:
+
+```
+# helloWorld.py
+
+class helloWorld:
+    def __call__(self, you):
+        return 'hello world from' + you
+```
+
+Once it is registered, you can call the generator from your schema just like you'd expect:
+
+```
+{"test": "helloWorld|me"}
+```
+
+Arguments are passed to the generator as strings; it is the generator's responsibility to do type-checking.
+
+### Generator registration
+To use this generator, we put it in a module named `helloWorld.py`. Then we put it somewhere, say in `/Users/James/project/generators/`.
+
+To use the generator, we pass the path where it is located to Datagen like so:
+
+```
+from datagen import Datagen
+
+paths = ['/Users/James/project/generators/']
+dg = Datagen(paths)
+```
+You can pass arbitrarily many paths to Datagen. Datagen will automatically register any generators it finds within them. Datagen does not search sub-directories.
+
+To summarize, there are x requirements for a generator:
+
+- It must be a class with a `__call__` method
+- It must be within a module sharing the name of the class
+- It's enclosing path must be passed to Datagen
+
+As you may have noted at this point, custom generators can only be used when using Datagen as a library. This could change pretty easily,

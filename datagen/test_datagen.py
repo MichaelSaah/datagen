@@ -3,7 +3,7 @@ from datagen.generators.utilities import WeightedSampler
 import string
 import pytest
 
-gen = Generate()
+gen = Generate(generator_paths=[])
 
 def test_generators():
     # case: general sampler test

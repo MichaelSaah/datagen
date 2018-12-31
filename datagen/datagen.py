@@ -2,17 +2,19 @@ import json, os
 from importlib import import_module
 
 class Generate:
-    def __init__(self):
+    def __init__(self, generator_paths):
+        generator_paths.append(os.path.dirname(__file__) + '/generators')
         self._db = {}
-        for module in os.listdir(os.path.dirname(__file__) + '/generators'):
-            if module == '__init__.py' or module[-3:] != '.py':
-                continue
-            generator = module[:-3]
-            try:            
-                module = import_module('datagen.generators.' + generator)
-                self._db[generator] = getattr(module, generator)()
-            except AttributeError:
-                continue
+        for path in generator_paths: 
+            for module in os.listdir(path):
+                if module == '__init__.py' or module[-3:] != '.py':
+                    continue
+                generator = module[:-3]
+                try:            
+                    module = import_module('datagen.generators.' + generator)
+                    self._db[generator] = getattr(module, generator)()
+                except AttributeError:
+                    continue
 
     def __call__(self, args_str):
         args_out = dict() 
@@ -30,7 +32,8 @@ class Generate:
 
 
 class Datagen:
-    gen = Generate()
+    def __init__(self, generator_paths=[]):
+        self.gen = Generate(generator_paths)
 
     def __call__(self, data, n=1, native=False): 
         if native:
