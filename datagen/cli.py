@@ -17,11 +17,10 @@ def get_args():
         help='Path to the schema file, or the schema itself if -s is passed')
     parser.add_argument('-n',
         dest='n',
-        metavar='N',
         action='store',
         type=int,
         default=1,
-        help='Generate N copies of the schema')
+        help='Generate n copies of the schema')
     parser.add_argument('-s',
         dest='schema_literal',
         action='store_true',
