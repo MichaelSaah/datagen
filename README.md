@@ -45,7 +45,7 @@ and get back
 ### Generators
 In the last example, `"firstName"`, `"lastName"`, `"eMail"`, and `"personAge"` are all example of what we call generators. In their simplest form generators are passed as just a name. However, some generators can take arguments.
 
-For example, there is a `numberInt` generator that when passed without arguments produces a random signed 32 bit integer. However, let's say we wanted a three digit positive integer for a schema. All we need to do to get one of these is `numberInt|100|999`.
+For example, there is a `numberInt` generator that when passed without arguments produces a random signed 32 bit integer. However, let's say we want a three digit positive integer. All we need to get one of these is `numberInt|100|999`.
 
 As you can see, we use the `|` char to seperate arguments in generators.
 
@@ -116,10 +116,10 @@ $ datagen schema.json -n 10
 Passing this flag pretty prints the output.
 
 #### `-s`
-Passing this flag tells Datagen to interperet the path string as the schema itself. For example, one could do
+Passing this flag tells Datagen to interperet the first argument as the schema itself. For example, one could do
 
 ```
-$ datagen '["firstName", "lastName"]' -s
+$ datagen -s "[\"firstName\", \"lastName\"]"
 ```
 
 ## Using as a Library
@@ -134,7 +134,7 @@ schema = {
 }
 output = dg(schema, native=True)
 ```
-By passing the `native` keyword argument, `output` is returned as a python dictionary (or list if the schema was given as a list). This allows you, for instance, to load the resulting data directly into a test database.
+By passing the `native` keyword argument, `output` is returned as a python dictionary (or list if the schema was given as a list, and so on.) This allows you, for instance, to pass the resulting data directly to a database client.
 
 ## Writing Generators
 Writing generators is very simple. First off, we should note that when we say "generator", we are not speaking of python generators, which are a built-in feature of python. Our generators are just functions wrapped in classes. Below is an example with one argument:

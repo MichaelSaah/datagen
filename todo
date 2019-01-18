@@ -1,4 +1,12 @@
+error handling:
+    handle errors related to program inputs
+        schema parsing
+        generator paths
+        bad -n arg
+    don't handle generator errors, let those crash the program
+
 generators:
+identity, as in don't change whatever follows
 -addresses
     make zipCode take a statecode and return valid zc for state
         generating REAL VALID zc's is not trivial
@@ -24,4 +32,6 @@ company
 time series data (stocks)
 weather data
 lorem ipsum
-
+ecommerce stuff
+    orders
+    customer accts
