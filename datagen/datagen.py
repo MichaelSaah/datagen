@@ -1,20 +1,40 @@
 import json, os
+import importlib.util
 from importlib import import_module
+
 
 class Generate:
     def __init__(self, generator_paths):
-        generator_paths.append(os.path.dirname(__file__) + '/generators')
+        package_generators_path = os.path.dirname(__file__) + '/generators'
+        generator_paths.append(package_generators_path)
         self._db = {}
         for path in generator_paths: 
-            for module in os.listdir(path):
-                if module == '__init__.py' or module[-3:] != '.py':
+            #TODO handle bad paths
+            for ffile in os.listdir(path):
+                if ffile == '__init__.py' or ffile[-3:] != '.py':
                     continue
-                generator = module[:-3]
-                try:            
-                    module = import_module('datagen.generators.' + generator)
-                    self._db[generator] = getattr(module, generator)()
-                except AttributeError:
-                    continue
+                generator = ffile[:-3]
+                if path == package_generators_path:
+                    self.load_package_generator(generator)
+                else:
+                    self.load_custom_generator(path, generator)
+
+    def load_package_generator(self, generator):
+        module = import_module('datagen.generators.' + generator)
+        try:            
+            self._db[generator] = getattr(module, generator)()
+        except AttributeError:
+            pass
+
+    def load_custom_generator(self, path, generator):
+        spec = importlib.util.spec_from_file_location(
+            generator, path + '/' + generator + '.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        try:
+            self._db[generator] = getattr(module, generator)()
+        except AttributeError:
+            pass
 
     def __call__(self, args_str):
         args_out = dict() 

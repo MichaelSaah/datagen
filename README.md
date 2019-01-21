@@ -9,7 +9,14 @@ Use it as follows:
 $ datagen schema.json > output.json
 ```
 
-## Schemas
+### Installation
+Clone the repo and run `$ python setup.py install` from the top-level directory. 
+
+### A work in progress
+Feel free to open an issue if you have any ideas to share!
+
+
+## A Brief Tutorial
 A schema is just a json string that uses special tags to specify what should be filled in. You can think of it like a GraphQL query.
 
 For example, let's say you want to fill in a table of users. For simplicity's sake, say each user has a first name, a last name, an email, and an age. We could write a schema like this:
@@ -103,7 +110,6 @@ What we did here was wrap our `students` object with another object that specifi
 ```
 Internally, Datagen wraps the top-level object like this when the `-n` flag is passed.
 
-
 ## Options
 #### `-n`
 This flag with an integer allows you to generate n records derived from the schema
@@ -122,6 +128,7 @@ Passing this flag tells Datagen to interperet the first argument as the schema i
 $ datagen -s "[\"firstName\", \"lastName\"]"
 ```
 
+
 ## Using as a Library
 Datagen is more flexible when used as a library. Here's a simple example:
 
@@ -136,7 +143,7 @@ output = dg(schema, native=True)
 ```
 By passing the `native` keyword argument, `output` is returned as a python dictionary (or list if the schema was given as a list, and so on.) This allows you, for instance, to pass the resulting data directly to a database client.
 
-## Writing Generators
+### Writing Generators
 Writing generators is very simple. First off, we should note that when we say "generator", we are not speaking of python generators, which are a built-in feature of python. Our generators are just functions wrapped in classes. Below is an example with one argument:
 
 ```
@@ -163,10 +170,12 @@ To use the generator, we pass the path where it is located to Datagen like so:
 ```
 from datagen import Datagen
 
-paths = ['/Users/James/project/generators/']
+paths = ['/Users/James/project/generators']
 dg = Datagen(paths)
 ```
 You can pass arbitrarily many paths to Datagen. Datagen will automatically register any generators it finds within them. Datagen does not search sub-directories.
+
+**Note:** Make sure you don't place code that imports the Datagen class in the same directory as your generators. Doing so will result in a circular import.
 
 To summarize, there are x requirements for a generator:
 

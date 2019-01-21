@@ -1,5 +1,5 @@
-from datagen.datagen import Datagen, Generate
-from datagen.generators.utilities import WeightedSampler
+from .datagen import Datagen, Generate
+from .generators.utilities import WeightedSampler
 import string
 import pytest
 
@@ -129,4 +129,3 @@ def test_datagen():
     test_val = "_tester"
     test_val = dg(test_val, native=True)
     assert test_val in gen._db["_tester"].values
-
