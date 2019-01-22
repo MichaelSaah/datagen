@@ -5,19 +5,29 @@ from importlib import import_module
 
 class Generate:
     def __init__(self, generator_paths):
-        package_generators_path = os.path.dirname(__file__) + '/generators'
-        generator_paths.append(package_generators_path)
         self._db = {}
-        for path in generator_paths: 
-            #TODO handle bad paths
-            for ffile in os.listdir(path):
-                if ffile == '__init__.py' or ffile[-3:] != '.py':
-                    continue
-                generator = ffile[:-3]
-                if path == package_generators_path:
-                    self.load_package_generator(generator)
-                else:
-                    self.load_custom_generator(path, generator)
+        # load package generators
+        package_path = os.path.dirname(__file__) + '/generators'
+        files = list(map(self.clean_file_name, os.listdir(package_path)))
+        modules = [f for f in files if f]
+        for module in modules:
+            self.load_package_generator(module)
+        # load custom generators
+        for path in generator_paths:
+            try:
+                files = list(map(self.clean_file_name, os.listdir(path)))
+            except FileNotFoundError:
+                print(path + 'is not a valid path')
+                continue
+            modules = [f for f in files if f]
+            for module in modules:
+                self.load_custom_generator(path, module)
+
+    def clean_file_name(self, file_name):
+        if file_name != '__init__.py' and file_name[-3:] == '.py':
+            return file_name[:-3]
+        else:
+            return ''
 
     def load_package_generator(self, generator):
         module = import_module('datagen.generators.' + generator)
