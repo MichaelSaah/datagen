@@ -8,26 +8,23 @@ class Generate:
         self._db = {}
         # load package generators
         package_path = os.path.dirname(__file__) + '/generators'
-        files = list(map(self.clean_file_name, os.listdir(package_path)))
-        modules = [f for f in files if f]
+        files = os.listdir(package_path)
+        modules = [f[:-3] for f in files if self.is_module(f)]
         for module in modules:
             self.load_package_generator(module)
         # load custom generators
         for path in generator_paths:
             try:
-                files = list(map(self.clean_file_name, os.listdir(path)))
+                files = os.listdir(path)
             except FileNotFoundError:
                 print(path + 'is not a valid path')
                 continue
-            modules = [f for f in files if f]
+            modules = [f[:-3] for f in files if self.is_module(f)]
             for module in modules:
                 self.load_custom_generator(path, module)
 
-    def clean_file_name(self, file_name):
-        if file_name != '__init__.py' and file_name[-3:] == '.py':
-            return file_name[:-3]
-        else:
-            return ''
+    def is_module(self, file_name):
+        return file_name != '__init__.py' and file_name[-3:] == '.py'
 
     def load_package_generator(self, generator):
         module = import_module('datagen.generators.' + generator)
