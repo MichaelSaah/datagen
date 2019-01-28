@@ -1,14 +1,18 @@
-from .datagen import Datagen, Generate
-from .generators.utilities import WeightedSampler
+from ..datagen import Datagen, Generate
+from ..generators.utilities import WeightedSampler
 import string
+import tempfile, shutil
 import pytest
+import os
 
-gen = Generate(generator_paths=[])
+test_gens = os.path.dirname(os.path.abspath(__file__)) + '/generators'
 
 def test_generators():
+    gen = Generate(generator_paths=[test_gens])
+    
     # case: general sampler test
-    t = gen('_tester')
-    assert t in gen._db['_tester'].values
+    t = gen('_sampler_tester')
+    assert t in gen._db['_sampler_tester'].values
 
     # case: WeightedSampler
     wb = WeightedSampler(['a', 'b', 'c'], [0.4, 0.6, 0])
@@ -55,37 +59,38 @@ def test_generators():
 
 
 def test_datagen():
-    dg = Datagen()
+    dg = Datagen(generator_paths=[test_gens])
+    gen = dg.gen
 
     # case: general
     test_dict = {
-        "name" : {"first": "_tester", "last": "_tester"},
-        "age" : "_tester",
-        "children" : ["_tester", "_tester", "_tester" ]
+        "name" : {"first": "_sampler_tester", "last": "_sampler_tester"},
+        "age" : "_sampler_tester",
+        "children" : ["_sampler_tester", "_sampler_tester", "_sampler_tester" ]
     }
 
     test_dict = dg(test_dict, native=True)
-    assert test_dict["name"]["first"] in gen._db["_tester"].values
-    assert test_dict["name"]["last"] in gen._db["_tester"].values
-    assert test_dict["age"] in gen._db["_tester"].values
+    assert test_dict["name"]["first"] in gen._db["_sampler_tester"].values
+    assert test_dict["name"]["last"] in gen._db["_sampler_tester"].values
+    assert test_dict["age"] in gen._db["_sampler_tester"].values
     for f in test_dict["children"]:
-        assert f in gen._db["_tester"].values
+        assert f in gen._db["_sampler_tester"].values
 
     # case: working array
     test_dict = {
         '_n' : 10,
-        'obj' : {'name' : '_tester'}
+        'obj' : {'name' : '_sampler_tester'}
     }
 
     test_dict = dg(test_dict, native=True)
     assert len(test_dict) == 10
     for i in range(10):
-        assert test_dict[i]['name'] in gen._db['_tester'].values
+        assert test_dict[i]['name'] in gen._db['_sampler_tester'].values
 
     # case: array with bad _n
     test_dict = {
         '_n' : 'foo',
-        'obj' : {'name' : '_tester'}
+        'obj' : {'name' : '_sampler_tester'}
     }
 
     with pytest.raises(ValueError):
@@ -101,13 +106,13 @@ def test_datagen():
     
     # case: nested lists
     test_dict = {
-        "people" : [["_tester", "_tester"], ["_tester", "_tester"]]
+        "people" : [["_sampler_tester", "_sampler_tester"], ["_sampler_tester", "_sampler_tester"]]
     }
 
     test_dict = dg(test_dict, native=True)
     for f,l in test_dict["people"]:
-        assert f in gen._db["_tester"].values
-        assert l in gen._db["_tester"].values
+        assert f in gen._db["_sampler_tester"].values
+        assert l in gen._db["_sampler_tester"].values
 
     # case: non-(string,list,dict) values
     test_dict = {
@@ -120,12 +125,23 @@ def test_datagen():
     assert test_dict['null'] == None
 
     # case: list
-    test_list = ["_tester", "_tester"]
+    test_list = ["_sampler_tester", "_sampler_tester"]
     test_list = dg(test_list, native=True)
-    assert test_list[0] in gen._db["_tester"].values
-    assert test_list[1] in gen._db["_tester"].values
+    assert test_list[0] in gen._db["_sampler_tester"].values
+    assert test_list[1] in gen._db["_sampler_tester"].values
 
     # case: naked value
-    test_val = "_tester"
+    test_val = "_sampler_tester"
     test_val = dg(test_val, native=True)
-    assert test_val in gen._db["_tester"].values
+    assert test_val in gen._db["_sampler_tester"].values
+
+
+def test_custom_generator_loading():
+    t_dir = tempfile.mkdtemp()
+    shutil.copy(test_gens + '/_tester.py', t_dir)
+    paths = [t_dir]
+    gen = Generate(generator_paths=paths)
+
+    assert '_tester' in gen._db
+
+    shutil.rmtree(t_dir)

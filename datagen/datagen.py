@@ -6,13 +6,17 @@ from importlib import import_module
 class Generate:
     def __init__(self, generator_paths):
         self._db = {}
-        # load package generators
+        self.load_package_generators()
+        self.load_custom_generators(generator_paths)
+
+    def load_package_generators(self):
         package_path = os.path.dirname(__file__) + '/generators'
         files = os.listdir(package_path)
         modules = [f[:-3] for f in files if self.is_module(f)]
         for module in modules:
             self.load_package_generator(module)
-        # load custom generators
+
+    def load_custom_generators(self, generator_paths):
         for path in generator_paths:
             try:
                 files = os.listdir(path)
@@ -22,9 +26,6 @@ class Generate:
             modules = [f[:-3] for f in files if self.is_module(f)]
             for module in modules:
                 self.load_custom_generator(path, module)
-
-    def is_module(self, file_name):
-        return file_name != '__init__.py' and file_name[-3:] == '.py'
 
     def load_package_generator(self, generator):
         module = import_module('datagen.generators.' + generator)
@@ -42,6 +43,9 @@ class Generate:
             self._db[generator] = getattr(module, generator)()
         except AttributeError:
             pass
+    
+    def is_module(self, file_name):
+        return file_name != '__init__.py' and file_name[-3:] == '.py'
 
     def __call__(self, args_str):
         args_out = dict() 
